@@ -26,4 +26,33 @@ A console-based Personal Finance Management application built in Java, designed 
 - IDE like IntelliJ IDEA, Eclipse, or a simple text editor
 
 ### Compilation and Running
-1. Clone the repository:
+1. Clone the repository:   
+2. Navigate to the project directory:
+3. Compile the Java files:
+4. Run the main class:
+
+
+
+## Usage
+- Register a new user
+- Log in with your credentials
+- Add, view, edit, delete transactions
+- View summarized reports
+
+## Future Enhancements
+- Integrate with a database for persistent storage
+- Graphical User Interface (GUI) using JavaFX
+- Authentication via email/OTP
+- Mobile version or web app
+
+## License
+This project is for educational purposes. You can customize, extend, and use it freely.
+
+---
+
+*(Replace placeholder URLs and details with your actual project info)*
+
+---
+
+Would you like me to generate this in a ready-to-copy markdown file for you?
+
