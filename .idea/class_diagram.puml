@@ -1,0 +1,61 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+' --- Classes ---
+
+class User {
+  - String username
+  - String passwordHash
+  + authenticate(username, password): boolean
+  + getUsername(): String
+}
+
+abstract class Transaction {
+  # int id
+  # String category
+  # double amount
+  # Date date
+  + {abstract} getType(): String
+  + getId(): int
+  + getCategory(): String
+  + setCategory(category): void
+  + getAmount(): double
+  + setAmount(amount): void
+  + toString(): String
+}
+
+class Income {
+  + Income(id, category, amount)
+  + getType(): String
+}
+
+class Expense {
+  + Expense(id, category, amount)
+  + getType(): String
+}
+
+class FinanceTrackerApp {
+  - static ArrayList<Transaction> transactions
+  - static int transactionCounter
+  - static Scanner scanner
+  + main(args): void
+  - addTransaction(type): void
+  - viewTransactions(): void
+  - findTransactionById(id): Transaction
+  - editTransaction(): void
+  - deleteTransaction(): void
+  - showSummaryDashboard(): void
+}
+
+' --- Relationships ---
+
+' Inheritance (Generalization)
+Transaction <|-- Income
+Transaction <|-- Expense
+
+' Composition/Aggregation (FinanceTrackerApp manages Transactions)
+FinanceTrackerApp "1" o-- "*" Transaction : manages
+
+' Dependency/Association (App uses User for authentication)
+FinanceTrackerApp ..> User : authenticates
+@enduml
