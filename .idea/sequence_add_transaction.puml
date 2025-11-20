@@ -1,0 +1,61 @@
+@startuml
+title Sequence Diagram: Add Transaction
+
+actor User
+participant Console
+participant FinanceTrackerApp as App
+participant TransactionFactory as Factory <<utility>>
+database TransactionList as DB
+
+User -> Console: Selects '1. Add Income' (or '2. Add Expense')
+
+activate App
+Console -> App: addTransaction(type)
+
+App -> App: Prints "Enter category:"
+App -> Console: Prompt for Category
+activate Console
+Console -> User: Displays prompt
+User -> Console: Inputs Category String
+deactivate Console
+App <- Console: Category String
+
+loop Validate Amount Input
+    App -> App: Prints "Enter amount:"
+    App -> Console: Prompt for Amount
+    activate Console
+    Console -> User: Displays prompt
+    User -> Console: Inputs Amount String
+    deactivate Console
+    App <- Console: Amount String
+    App -> App: Parse/Validate Amount (>= 0)
+    alt Valid positive number
+        break
+    else Invalid input
+        App -> Console: Display error message
+    end
+end
+
+App -> Factory: createTransaction(\n  counter, type, category, amount)
+activate Factory
+note right of Factory
+  Determines if it's Income or Expense
+  Increments transactionCounter
+  Instantiates the correct class
+end
+create Transaction
+Factory -> Transaction: <<create>>
+deactivate Factory
+
+App <- Transaction: New Transaction object (t)
+
+App -> DB: transactions.add(t)
+note right of DB
+  Transaction is stored
+  in the ArrayList
+end
+
+App -> Console: Prints "Transaction added successfully."
+deactivate App
+
+@enduml
