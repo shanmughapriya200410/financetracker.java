@@ -20,7 +20,8 @@ This project provides a simple yet effective tool for managing personal finances
 - IDE: IntelliJ IDEA, Eclipse, or any text editor
 
 ### Compilation and Running
-1. Clone the repository:   
+1. Clone the repository:
+ https://github.com/shanmughapriya200410/financetracker.java.git
 2. Navigate to the project directory:
 3. Compile the Java files:
 4. Run the main class:
